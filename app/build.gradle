@@ -5,8 +5,8 @@ plugins {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
+// apply plugin: 'com.google.gms.google-services'
+// apply plugin: 'com.google.firebase.crashlytics'
 
 androidGitVersion {
     baseCode 1
@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "org.newlogic.smartscanner"
-        minSdkVersion 21
+        minSdkVersion 22
         targetSdkVersion 32
         versionName androidGitVersion.name()
         versionCode androidGitVersion.code()
@@ -33,31 +33,31 @@ android {
         viewBinding = true
     }
 
-    signingConfigs{
-        release {
-            def props = new Properties()
+    // signingConfigs{
+    //     release {
+    //         def props = new Properties()
 
-            def fileInputStream = new FileInputStream(file('../signing.properties'))
-            props.load(fileInputStream)
-            fileInputStream.close()
+    //         def fileInputStream = new FileInputStream(file('../signing.properties'))
+    //         props.load(fileInputStream)
+    //         fileInputStream.close()
 
-            storeFile = file('upload-keystore')
-            storePassword = props['STORE_PASSWORD']
-            keyAlias = props['KEY_ALIAS']
-            keyPassword = props['KEY_PASSWORD']
-        }
-    }
+    //         storeFile = file('upload-keystore')
+    //         storePassword = props['STORE_PASSWORD']
+    //         keyAlias = props['KEY_ALIAS']
+    //         keyPassword = props['KEY_PASSWORD']
+    //     }
+    // }
 
     buildTypes {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        release {
-            minifyEnabled false
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+        // release {
+        //     minifyEnabled false
+        //     signingConfig signingConfigs.release
+        //     proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        // }
         android.applicationVariants.all { variant ->
             variant.outputs.all {
                 def date = new Date().format('MMddyyyy')
