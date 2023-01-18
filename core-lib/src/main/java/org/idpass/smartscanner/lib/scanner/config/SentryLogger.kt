@@ -27,8 +27,6 @@ data class SentryLogger(
     val testMsg: String? = null
 ) : Parcelable {
     companion object {
-        val default = SentryLogger(
-            dsn = "http://90ebf03b06534e01a21f82c1b2e86ae2@188.166.182.254:9000/4"
-        )
+        val default = null
     }
 }
