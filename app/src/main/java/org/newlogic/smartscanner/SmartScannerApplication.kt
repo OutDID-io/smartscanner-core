@@ -19,17 +19,17 @@ package org.newlogic.smartscanner
 
 import android.util.Log
 import androidx.multidex.MultiDexApplication
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
+// import com.google.firebase.analytics.FirebaseAnalytics
+// import com.google.firebase.crashlytics.FirebaseCrashlytics
 import timber.log.Timber
 
 
 class SmartScannerApplication : MultiDexApplication() {
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    // private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate() {
         super.onCreate()
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        // firebaseAnalytics = FirebaseAnalytics.getInstance(this)
         if (BuildConfig.BUILD_TYPE == "release") Timber.plant(CrashReportingTree())
     }
 
@@ -37,17 +37,17 @@ class SmartScannerApplication : MultiDexApplication() {
      * A tree which logs important information for crash reporting.
      */
     private class CrashReportingTree : Timber.Tree() {
-        val crashlytics = FirebaseCrashlytics.getInstance()
+        // val crashlytics = FirebaseCrashlytics.getInstance()
         override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
             if (priority == Log.VERBOSE || priority == Log.DEBUG) {
                 return
             }
-            crashlytics.log(message)
-            if (t != null) {
-                if (priority == Log.ERROR) {
-                    crashlytics.recordException(t)
-                }
-            }
+            // crashlytics.log(message)
+            // if (t != null) {
+            //     if (priority == Log.ERROR) {
+            //         crashlytics.recordException(t)
+            //     }
+            // }
         }
     }
 }
